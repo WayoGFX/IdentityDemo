@@ -52,6 +52,13 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+// builder of roles
+using (var scope = app.Services.CreateScope())
+{
+    await RoleSeeder.SeedRolesAsync(scope.ServiceProvider); 
+}
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
